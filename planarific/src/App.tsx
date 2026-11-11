@@ -22,7 +22,7 @@ import {
   type OrbitControlsType,
 } from './types';
 
-function App() {
+const App = () => {
   const [model, setModel] = useState<ModelData | null>(null);
   const [wireframe, setWireframe] = useState(false);
   const [clickCoords, setClickCoords] = useState<ClickCoordsType>(null);

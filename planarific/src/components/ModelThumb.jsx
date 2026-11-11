@@ -1,4 +1,4 @@
-export function ModelThumb({ description, blob, id, getNewModel }) {
+export const ModelThumb = ({ description, blob, id, getNewModel }) => {
   return (
     <li className="model-li">
       <p className="model-description">{description}</p>

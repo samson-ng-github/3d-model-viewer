@@ -1,4 +1,4 @@
-export function Metadata({ model }) {
+export const Metadata = ({ model }) => {
   return (
     <div id="metadata">
       {model.address1} {model.address2}

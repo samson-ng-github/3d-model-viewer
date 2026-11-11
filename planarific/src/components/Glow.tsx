@@ -4,7 +4,7 @@ type GlowProps = {
   clickCoords: ClickCoordsType;
 };
 
-export function Glow({ clickCoords }: GlowProps) {
+export const Glow = ({ clickCoords }: GlowProps) => {
   return (
     <group>
       {clickCoords ? (

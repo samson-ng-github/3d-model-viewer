@@ -1,6 +1,6 @@
 import { Icon } from './Icon';
 
-export function IconList(props) {
+export const IconList = (props) => {
   const {
     wireframeIcon,
     wireframe,
