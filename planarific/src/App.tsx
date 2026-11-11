@@ -3,25 +3,30 @@ import * as THREE from 'three';
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
-import { Model } from './components/Model.jsx';
-import { Lightings } from './components/Lightings.jsx';
-import { Glow } from './components/Glow.jsx';
-import { Logo } from './components/Logo.jsx';
-import { Background } from './components/Background.jsx';
-import { ModelList } from './components/ModelList.jsx';
-import { CircularLoader } from './components/CircularLoader.jsx';
-import { Metadata } from './components/Metadata.jsx';
-import { IconList } from './components/IconList.jsx';
+import { Model } from './components/Model';
+import { Lightings } from './components/Lightings';
+import { Glow } from './components/Glow';
+import { Logo } from './components/Logo';
+import { Background } from './components/Background';
+import { ModelList } from './components/ModelList';
+import { CircularLoader } from './components/CircularLoader';
+import { Metadata } from './components/Metadata';
+import { IconList } from './components/IconList';
 import { getModel } from './api';
 import resetIcon from './assets/reset.png';
 import wireframeIcon from './assets/wireframe.png';
 import coordinateIcon from './assets/coordinate.png';
+import {
+  type ModelData,
+  type ClickCoordsType,
+  type OrbitControlsType,
+} from './types';
 
-function App() {
-  const [model, setModel] = useState('');
+const App = () => {
+  const [model, setModel] = useState<ModelData | null>(null);
   const [wireframe, setWireframe] = useState(false);
-  const [clickCoords, setClickCoords] = useState(null);
-  const orbitref = useRef();
+  const [clickCoords, setClickCoords] = useState<ClickCoordsType>(null);
+  const orbitref = useRef<OrbitControlsType>(null);
 
   useEffect(() => {
     getModel()
@@ -33,7 +38,7 @@ function App() {
       });
   }, []);
 
-  const getNewModel = (url) => {
+  const getNewModel = (url: string) => {
     getModel(url)
       .then((data) => {
         setModel(data);
@@ -45,7 +50,7 @@ function App() {
   };
 
   const resetCamera = () => {
-    orbitref.current.reset();
+    orbitref.current?.reset();
     setClickCoords(null);
     setWireframe(false);
   };
@@ -69,7 +74,6 @@ function App() {
               <Model
                 model={model.model}
                 wireframe={wireframe}
-                clickCoords={clickCoords}
                 setClickCoords={setClickCoords}
               />
             ) : null}

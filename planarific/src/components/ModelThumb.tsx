@@ -1,4 +1,11 @@
-export function ModelThumb({ description, blob, id, getNewModel }) {
+type ModelThumbProps = {
+  description: string;
+  blob: string;
+  id: number;
+  getNewModel: (url: string) => void;
+};
+
+export const ModelThumb = ({ description, blob, id, getNewModel }: ModelThumbProps) => {
   return (
     <li className="model-li">
       <p className="model-description">{description}</p>

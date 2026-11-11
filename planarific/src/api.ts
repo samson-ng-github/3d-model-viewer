@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { type ModelListData, type ModelData } from './types';
 
 const api = axios.create({
-  baseURL: 'https://fedevtest.azurewebsites.net',
+  baseURL: '/api',
 });
 
 const config = {
@@ -18,14 +19,14 @@ const getLogo = () => {
     });
 };
 
-const getModels = () => {
-  return api.get('/v1/models', config).then((res) => {
+const getModels = (): Promise<ModelListData[]> => {
+  return api.get<ModelListData[]>('/v1/models', config).then((res) => {
     return res.data;
   });
 };
 
-const getModel = (url = '/v1/models/1') => {
-  return api.get(url, config).then((res) => {
+const getModel = (url = '/v1/models/1'): Promise<ModelData> => {
+  return api.get<ModelData>(url, config).then((res) => {
     return res.data;
   });
 };

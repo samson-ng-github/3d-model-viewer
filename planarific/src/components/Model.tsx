@@ -1,9 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import { useGLTF } from '@react-three/drei/native';
-import { useThree } from '@react-three/fiber';
+import { useThree, ThreeEvent } from '@react-three/fiber';
 import * as THREE from 'three';
+import { type ClickCoordsType } from '../types';
 
-export function Model({ model, wireframe, clickCoords, setClickCoords }) {
+type ModelProps = {
+  model: string;
+  wireframe: boolean;
+  setClickCoords: Dispatch<SetStateAction<ClickCoordsType>>;
+};
+
+export const Model = ({ model, wireframe, setClickCoords }: ModelProps) => {
   const ref = useRef();
   const gltf = useGLTF(model);
 
@@ -14,18 +21,29 @@ export function Model({ model, wireframe, clickCoords, setClickCoords }) {
   useEffect(() => {
     if (gltf.scene) {
       gltf.scene.traverse((child) => {
-        if (child.isMesh) {
-          child.material.wireframe = wireframe;
+        if (child instanceof THREE.Mesh) {
+          const materials = Array.isArray(child.material)
+            ? child.material
+            : [child.material];
+
+          materials.forEach((material) => {
+            if (
+              'wireframe' in material &&
+              typeof material.wireframe === 'boolean'
+            ) {
+              material.wireframe = wireframe;
+            }
+          });
         }
       });
     }
-  }, [model, wireframe]);
+  }, [model, wireframe, gltf.scene]);
 
   if (!gltf.scene) {
     return null;
   }
 
-  const handleClick = (event) => {
+  const handleClick = (event: ThreeEvent<MouseEvent>) => {
     const rect = gl.domElement.getBoundingClientRect();
     mouse.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -49,4 +67,4 @@ export function Model({ model, wireframe, clickCoords, setClickCoords }) {
       onClick={handleClick}
     />
   );
-}
+};

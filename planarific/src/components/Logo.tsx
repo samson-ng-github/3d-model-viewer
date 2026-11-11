@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getLogo } from '../api';
 
-export function Logo() {
+export const Logo = () => {
   const [logo, setLogo] = useState('');
   useEffect(() => {
     getLogo()

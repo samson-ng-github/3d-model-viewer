@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getModels, getThumb } from '../api';
 import { ModelThumb } from './ModelThumb';
 
-export function ModelList({ getNewModel }) {
+export const ModelList = ({ getNewModel }) => {
   const [models, setModels] = useState([]);
   useEffect(() => {
     getModels()
