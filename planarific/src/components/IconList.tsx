@@ -1,6 +1,18 @@
 import { Icon } from './Icon';
+import type { ClickCoordsType } from '../types';
 
-export const IconList = (props) => {
+type IconListProps = {
+  wireframeIcon: string;
+  wireframe: boolean;
+  toggleWireframe: () => void;
+  resetIcon: string;
+  resetCamera: () => void;
+  coordinateIcon: string;
+  clickCoords: ClickCoordsType;
+  resetClickCoords: () => void;
+};
+
+export const IconList = (props: IconListProps) => {
   const {
     wireframeIcon,
     wireframe,
@@ -13,10 +25,7 @@ export const IconList = (props) => {
   } = props;
   return (
     <div id="icon-list">
-      <Icon
-        src={resetIcon}
-        onClick={resetCamera}
-      />
+      <Icon src={resetIcon} onClick={resetCamera} />
       <Icon
         src={wireframeIcon}
         colorDependent={wireframe}
@@ -24,7 +33,7 @@ export const IconList = (props) => {
       />
       <Icon
         src={coordinateIcon}
-        colorDependent={clickCoords}
+        colorDependent={clickCoords !== null}
         onClick={resetClickCoords}
       />
       {clickCoords ? (
@@ -41,4 +50,4 @@ export const IconList = (props) => {
       )}
     </div>
   );
-}
+};

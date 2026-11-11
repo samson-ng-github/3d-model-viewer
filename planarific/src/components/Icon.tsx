@@ -1,6 +1,6 @@
 type IconProps = {
   src: string;
-  colorDependent: boolean;
+  colorDependent?: boolean;
   onClick: () => void;
 };
 
