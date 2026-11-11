@@ -9,6 +9,7 @@ export function Background() {
         <LayerMaterial
           lighting="physical"
           transmission={1}
+          metal={0}
           side={THREE.BackSide}
         >
           <Gradient
