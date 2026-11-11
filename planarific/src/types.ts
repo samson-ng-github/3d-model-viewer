@@ -1,3 +1,5 @@
+import { type OrbitControls } from 'three-stdlib';
+
 type ModelListData = {
   id: number;
   description: string;
@@ -16,6 +18,8 @@ type ModelData = {
   thumbnail: string;
 };
 
-  type ClickCoordsType = [number, number, number];
+type ClickCoordsType = [number, number, number] | null;
 
-export { type ModelListData, type ModelData, type ClickCoordsType };
+type OrbitControlsType = OrbitControls | null;
+
+export { type ModelListData, type ModelData, type ClickCoordsType, type OrbitControlsType };

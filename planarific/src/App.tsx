@@ -13,17 +13,20 @@ import { CircularLoader } from './components/CircularLoader.jsx';
 import { Metadata } from './components/Metadata.jsx';
 import { IconList } from './components/IconList.jsx';
 import { getModel } from './api';
-import { type ModelData, type ClickCoordsType } from './types';
-import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 import resetIcon from './assets/reset.png';
 import wireframeIcon from './assets/wireframe.png';
 import coordinateIcon from './assets/coordinate.png';
+import {
+  type ModelData,
+  type ClickCoordsType,
+  type OrbitControlsType,
+} from './types';
 
 function App() {
   const [model, setModel] = useState<ModelData | null>(null);
   const [wireframe, setWireframe] = useState(false);
-  const [clickCoords, setClickCoords] = useState<ClickCoordsType | null>(null);
-  const orbitref = useRef<OrbitControlsType | null>(null);
+  const [clickCoords, setClickCoords] = useState<ClickCoordsType>(null);
+  const orbitref = useRef<OrbitControlsType>(null);
 
   useEffect(() => {
     getModel()
@@ -71,7 +74,6 @@ function App() {
               <Model
                 model={model.model}
                 wireframe={wireframe}
-                clickCoords={clickCoords}
                 setClickCoords={setClickCoords}
               />
             ) : null}
