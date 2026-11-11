@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
 import { Model } from './components/Model.jsx';
-import { Lightings } from './components/Lightings.jsx';
+import { Lightings } from './components/Lightings';
 import { Glow } from './components/Glow.jsx';
 import { Logo } from './components/Logo.jsx';
 import { Background } from './components/Background.jsx';
