@@ -1,4 +1,10 @@
-export const Metadata = ({ model }) => {
+import { type ModelData } from '../types';
+
+type MetadataProps = {
+  model: ModelData;
+};
+
+export const Metadata = ({ model }: MetadataProps) => {
   return (
     <div id="metadata">
       {model.address1} {model.address2}
@@ -8,4 +14,4 @@ export const Metadata = ({ model }) => {
       {model.postal_code}
     </div>
   );
-}
+};
